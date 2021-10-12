@@ -1,11 +1,16 @@
-let WhatsAlexa = require('../events');
+let { newCommand } = require('../events');
 let {MessageType} = require('@adiwajshing/baileys');
 let fs = require('fs')
 let FilterDb = require('./sql/filters');
 let Language = require('../language');
 let Lang = Language.getString('filters');
 
-WhatsAlexa.addCommand({pattern: 'filter ?(.*)', fromMe: true, desc: Lang.FILTER_DESC}, (async (message, match) => {
+newCommand(
+         {cmd: 'filter ?(.*)',
+          fromMe: true,
+          desc: Lang.FILTER_DESC},
+          (async (message, match) => {
+
     match = match[1].match(/[\'\"\“](.*?)[\'\"\“]/gsm);
 
     if (match === null) {
@@ -26,7 +31,12 @@ WhatsAlexa.addCommand({pattern: 'filter ?(.*)', fromMe: true, desc: Lang.FILTER_
     }
 }));
 
-WhatsAlexa.addCommand({pattern: 'stop ?(.*)', fromMe: true, desc: Lang.STOP_DESC}, (async (message, match) => {
+newCommand(
+         {cmd: 'stop ?(.*)',
+          fromMe: true,
+          desc: Lang.STOP_DESC},
+          (async (message, match) => {
+
     match = match[1].match(/[\'\"\“](.*?)[\'\"\“]/gsm);
     if (match === null) {
         return await message.client.sendMessage(message.jid,Lang.NEED_REPLY + '\n*Example:* ```.stop "hello"```',MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data})
@@ -42,7 +52,11 @@ WhatsAlexa.addCommand({pattern: 'stop ?(.*)', fromMe: true, desc: Lang.STOP_DESC
 }));
 
 
-WhatsAlexa.addCommand({on: 'text', fromMe: false}, (async (message, match) => {
+newCommand(
+         {msg: 'text',
+          fromMe: false},
+          (async (message, match) => {
+
     var filtreler = await FilterDb.getFilter(message.jid);
     if (!filtreler) return; 
     filtreler.map(
