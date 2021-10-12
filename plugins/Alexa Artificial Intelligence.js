@@ -8,7 +8,7 @@
 * So the half credit of this File/Code is to Phaticusthiccy/WhatsAsena           *
 **********************************************************************************
                                                                                                                                                                      */
-let WhatsAlexa = require('../events');
+let { newCommand } = require('../events');
 let ffmpeg = require('fluent-ffmpeg');
 let fs = require('fs');
 let https = require('https');
@@ -66,7 +66,13 @@ async function alexa_functionality_f() {
 }
 alexa_functionality_f()
 
-WhatsAlexa.addCommand({on: 'text', fromMe: wk, dontAddCommandList: true, deleteCommand: false}, (async (message, match) => {
+newCommand(
+         {msg: 'text',
+          fromMe: wk,
+          dontAddCommandList: true,
+          deleteCommand: false},
+          (async (message, match) => {
+
     if (message.message.startsWith('Alexa') && conf.FULLALEXA !== 'true') {        
         var unique_ident = ''
         if (conf.WORKTYPE == 'private') {
@@ -116,7 +122,12 @@ WhatsAlexa.addCommand({on: 'text', fromMe: wk, dontAddCommandList: true, deleteC
         })
     }
 }));
-WhatsAlexa.addCommand({on: 'text', fromMe: false, deleteCommand: false}, (async (message, match) => {
+newCommand(
+         {msg: 'text',
+          fromMe: false,
+          deleteCommand: false},
+          (async (message, match) => {
+
         if (conf.FULLALEXA == 'true' && ((!message.jid.includes('-')) || (message.jid.includes('-') && 
             (( message.mention !== false && message.mention.length !== 0 ) || message.reply_message !== false)))) {
             if (message.jid.includes('-') && (message.mention !== false && message.mention.length !== 0)) {
@@ -208,7 +219,12 @@ WhatsAlexa.addCommand({on: 'text', fromMe: false, deleteCommand: false}, (async 
         }
 
 }));
-WhatsAlexa.addCommand({ pattern: 'voicechat$', desc: voicechat_dsc, fromMe: wk }, (async (message, match) => {
+newCommand(
+         { cmd: 'voicechat$',
+          desc: voicechat_dsc,
+          fromMe: wk },
+          (async (message, match) => {
+
     if (!message.reply_message) return await message.client.sendMessage(message.jid,reply_eva, MessageType.text, { quoted: message.data }) 
     try {
         const file = await message.client.downloadAndSaveMediaMessage({
@@ -292,7 +308,12 @@ if (conf.LANG == 'ID') {
     wr_cmd = "*Anda harus memasukkan 'on' untuk menghidupkan & 'off' untuk mematikan!*"
 }
 
-WhatsAlexa.addCommand({ pattern: 'fullalexa ?(.*)', desc: fullalexa_dsc, fromMe: true}, (async (message, match) => {
+newCommand(
+         { cmd: 'fullalexa ?(.*)',
+          desc: fullalexa_dsc,
+          fromMe: true},
+          (async (message, match) => {
+
     if (match[1] == 'on') {
         if (alexa_functionality == 'true') {
             return await message.client.sendMessage(message.jid, '*' + already_on + '*', MessageType.text)
