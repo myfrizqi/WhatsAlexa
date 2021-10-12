@@ -9,7 +9,7 @@ let Lang = Language.getString('carbon');
 if (Config.WORKTYPE == 'private') {
 
     newCommand(
-             {msg: 'carbon ?(.*)',
+             {cmd: 'carbon ?(.*)',
               fromMe: true,
               desc: Lang.CARBON_DESC,
               warn: Lang.CARBON_WARN},
@@ -22,7 +22,7 @@ if (Config.WORKTYPE == 'private') {
 else if (Config.WORKTYPE == 'public') {
 
     newCommand(
-             {msg: 'carbon ?(.*)',
+             {cmd: 'carbon ?(.*)',
               fromMe: false,
               desc: Lang.CARBON_DESC,
               warn: Lang.CARBON_WARN},
