@@ -1,4 +1,5 @@
 let { newCommand } = require('../events');
+let WhatsAlexa = require('../events');
 let Config = require('../config');
 let fs = require('fs');
 let {MessageType} = require('@adiwajshing/baileys');
@@ -29,7 +30,7 @@ if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala aki
        
         var CMD_HELP = '';
         if (match[1] === '') {
-            newCommand.commands.map(
+            WhatsAlexa.commands.map(
                 async (command) =>  {
                     if (command.dontAddCommandList || command.cmd === undefined) return;
                     try {
@@ -58,7 +59,7 @@ if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala aki
         } else {
 
             var CMD_HELP = '';
-            newCommand.commands.map(
+            WhatsAlexa.commands.map(
                 async (command) =>  {
                     if (command.dontAddCommandList || command.cmd === undefined) return;
                     try {
@@ -97,7 +98,7 @@ if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala aki
 
         var CMD_HELP = '';
         if (match[1] === '') {
-            newCommand.commands.map(
+            WhatsAlexa.commands.map(
                 async (command) =>  {
                     if (command.dontAddCommandList || command.cmd === undefined) return;
                     try {
@@ -126,7 +127,7 @@ if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala aki
         } else {
 
             var CMD_HELP = '';
-            newCommand.commands.map(
+            WhatsAlexa.commands.map(
                 async (command) =>  {
                     if (command.dontAddCommandList || command.cmd === undefined) return;
                     try {
@@ -165,7 +166,7 @@ if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala aki
 
         var CMD_HELP = '';
         if (match[1] === '') {
-            newCommand.commands.map(
+            WhatsAlexa.commands.map(
                 async (command) =>  {
                     if (command.dontAddCommandList || command.cmd === undefined) return;
                     try {
@@ -194,7 +195,7 @@ if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala aki
         } else {
 
             var CMD_HELP = '';
-            newCommand.commands.map(
+            WhatsAlexa.commands.map(
                 async (command) =>  {
                     if (command.dontAddCommandList || command.cmd === undefined) return;
                     try {
@@ -233,7 +234,7 @@ if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala aki
 
         var CMD_HELP = '';
         if (match[1] === '') {
-            newCommand.commands.map(
+            WhatsAlexa.commands.map(
                 async (command) =>  {
                     if (command.dontAddCommandList || command.cmd === undefined) return;
                     try {
@@ -262,7 +263,7 @@ if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala aki
         } else {
 
             var CMD_HELP = '';
-            newCommand.commands.map(
+            WhatsAlexa.commands.map(
                 async (command) =>  {
                     if (command.dontAddCommandList || command.cmd === undefined) return;
                     try {
