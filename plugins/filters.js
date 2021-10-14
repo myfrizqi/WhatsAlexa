@@ -6,7 +6,7 @@ let Language = require('../language');
 let Lang = Language.getString('filters');
 
 newCommand(
-         {cmd: 'filter ?(.*)',
+         {pattern: 'filter ?(.*)',
           fromMe: true,
           desc: Lang.FILTER_DESC},
           (async (message, match) => {
@@ -32,7 +32,7 @@ newCommand(
 }));
 
 newCommand(
-         {cmd: 'stop ?(.*)',
+         {pattern: 'stop ?(.*)',
           fromMe: true,
           desc: Lang.STOP_DESC},
           (async (message, match) => {
@@ -53,7 +53,7 @@ newCommand(
 
 
 newCommand(
-         {msg: 'text',
+         {on: 'text',
           fromMe: false},
           (async (message, match) => {
 
