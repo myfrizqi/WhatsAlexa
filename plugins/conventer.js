@@ -11,7 +11,7 @@ let Lang = Language.getString('conventer');
 if (Config.WORKTYPE == 'private') {
 
     newCommand(
-             {cmd: 'mp4audio',
+             {pattern: 'mp4audio',
               fromMe: true,
               desc: Lang.MP4TOAUDİO_DESC},
               (async (message, match) => {    
@@ -20,7 +20,7 @@ if (Config.WORKTYPE == 'private') {
     }));
 
     newCommand(
-             {cmd: 'photo',
+             {pattern: 'photo',
               fromMe: true,
               desc: Lang.STİCKER_DESC},
               (async (message, match) => {   
@@ -31,7 +31,7 @@ if (Config.WORKTYPE == 'private') {
 else if (Config.WORKTYPE == 'public') {
 
     newCommand(
-             {cmd: 'mp4audio',
+             {pattern: 'mp4audio',
               fromMe: false,
               desc: Lang.MP4TOAUDİO_DESC},
               (async (message, match) => {    
@@ -40,7 +40,7 @@ else if (Config.WORKTYPE == 'public') {
     }));
 
     newCommand(
-             {cmd: 'photo',
+             {pattern: 'photo',
               fromMe: false,
               desc: Lang.STİCKER_DESC},
               (async (message, match) => {   
