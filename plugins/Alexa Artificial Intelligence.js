@@ -67,9 +67,9 @@ async function alexa_functionality_f() {
 alexa_functionality_f()
 
 newCommand(
-         {msg: 'text',
+         {on: 'text',
           fromMe: wk,
-          dontAddCommandList: true,
+          hideFromCommandList: true,
           deleteCommand: false},
           (async (message, match) => {
 
@@ -123,7 +123,7 @@ newCommand(
     }
 }));
 newCommand(
-         {msg: 'text',
+         {on: 'text',
           fromMe: false,
           deleteCommand: false},
           (async (message, match) => {
@@ -220,7 +220,7 @@ newCommand(
 
 }));
 newCommand(
-         { cmd: 'voicechat$',
+         { pattern: 'voicechat$',
           desc: voicechat_dsc,
           fromMe: wk },
           (async (message, match) => {
@@ -309,7 +309,7 @@ if (conf.LANG == 'ID') {
 }
 
 newCommand(
-         { cmd: 'fullalexa ?(.*)',
+         { pattern: 'fullalexa ?(.*)',
           desc: fullalexa_dsc,
           fromMe: true},
           (async (message, match) => {
