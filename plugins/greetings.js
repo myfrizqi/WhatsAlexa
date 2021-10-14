@@ -6,7 +6,7 @@ let Language = require('../language');
 let Lang = Language.getString('greetings');
 
 newCommand(
-         {cmd: 'welcome$',
+         {pattern: 'welcome$',
           fromMe: true,
           desc: Lang.WELCOME_DESC},
           (async (message, match) => {
@@ -20,9 +20,9 @@ newCommand(
 }));
 
 newCommand(
-         {cmd: 'welcome (.*)',
+         {pattern: 'welcome (.*)',
           fromMe: true,
-          dontAddCommandList: true},
+          hideFromCommandList: true},
           (async (message, match) => {
 
     if (match[1] === '') {
@@ -35,7 +35,7 @@ newCommand(
 }));
 
 newCommand(
-         {cmd: 'goodbye$',
+         {pattern: 'goodbye$',
           fromMe: true,
           desc: Lang.GOODBYE_DESC},
           (async (message, match) => {
@@ -49,9 +49,9 @@ newCommand(
 }));
 
 newCommand(
-         {cmd: 'goodbye (.*)',
+         {pattern: 'goodbye (.*)',
           fromMe: true,
-          dontAddCommandList: true},
+          hideFromCommandList: true},
           (async (message, match) => {
 
     if (match[1] === '') {
