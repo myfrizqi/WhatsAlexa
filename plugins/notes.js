@@ -1,13 +1,16 @@
 let fs = require('fs/promises')
 let path = require('path')
 let { MessageType } = require('@adiwajshing/baileys')
-let WhatsAlexa = require('../events');
+let { newCommand } = require('../events');
 let NotesDB = require('./sql/notes');
 let Language = require('../language')
 let Lang = Language.getString('notes')
 
-WhatsAlexa.addCommand({ pattern: 'notes', fromMe: true, desc: Lang.NOTES_USAGE }, async (message, match) => {
-
+newCommand(
+         { pattern: 'notes',
+          fromMe: true,
+          desc: Lang.NOTES_USAGE },
+          (async (message, match) => {
 
     const _notes = await NotesDB.getNotes()
     const notes = []
@@ -35,7 +38,11 @@ WhatsAlexa.addCommand({ pattern: 'notes', fromMe: true, desc: Lang.NOTES_USAGE }
 
 
 
-WhatsAlexa.addCommand({ pattern: 'save ?(.*)', fromMe: true, desc: Lang.SAVE_USAGE }, async (message, match) => {
+newCommand(
+         { pattern: 'save ?(.*)',
+          fromMe: true,
+          desc: Lang.SAVE_USAGE },
+          (async (message, match) => {
 
     const userNote = match[1]
 
@@ -83,7 +90,11 @@ WhatsAlexa.addCommand({ pattern: 'save ?(.*)', fromMe: true, desc: Lang.SAVE_USA
     }
 })
 
-WhatsAlexa.addCommand({ pattern: 'deleteNotes', fromMe: true, desc: Lang.DELETE_USAGE }, async (message, match) => {
+newCommand(
+         { pattern: 'delnotes',
+          fromMe: true,
+          desc: Lang.DELETE_USAGE },
+          (async (message, match) => {
 
     await NotesDB.deleteAllNotes()
 
