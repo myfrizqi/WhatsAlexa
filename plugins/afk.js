@@ -23,7 +23,7 @@ function secondsToHms(d) {
 }
 
 newCommand(
-         {msg: 'text',
+         {on: 'text',
           fromMe: false,
           deleteCommand: false},
           (async (message, match) => {
@@ -80,7 +80,7 @@ newCommand(
 }));
 
 newCommand(
-         {cmd: 'afk ?(.*)',
+         {pattern: 'afk ?(.*)',
           fromMe: true,
           deleteCommand: false,
           desc: Lang.AFK_DESC},
