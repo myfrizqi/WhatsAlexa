@@ -23,20 +23,20 @@ if (Config.LANG == 'ML') warning = 'ബോട്ടിന്റെ ഉപയോ�
 if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala akibat yang mungkin timbul dari penggunaan atau penyalahgunaan Bot, Anda bertanggung jawab atas semua konsekuensi juga tanggung jawab berbagi Gambar, Video, Stiker, Audio dll. adalah milik Anda!', language = 'Indonasian', FMSG = 'Semoga harimu menyenangkan 💖\n\n```Git:``` *'+Config.GIT+'*\n\n```Terima kasih telah menggunakan WhatsAlexa 💕```\n*© WhatsAlexa, Dibuat oleh Toxic Devil*\n\n*◄━━━━━━━⦁⦁◯⦁⦁━━━━━━━━►*\n   *⦁◊═⦁ Whats 👸 Alexa ⦁═◊⦁*\n*◄━━━━━━━⦁⦁◯⦁⦁━━━━━━━━►*', MSG = '*◄━━━━━━━⦁⦁◯⦁⦁━━━━━━━━►*\n   *⦁◊═⦁ Whats 👸 Alexa ⦁═◊⦁*\n*◄━━━━━━━⦁⦁◯⦁⦁━━━━━━━━►*\n\nHai user,\n*'+warning+'*\n\n*◆ INFORMASI BOT ◆*\n\n```▣ Pengembang:``` *TOXIC DEVIL*\n```▣ Pemilik:``` *'+Config.OWNER+'*\n```▣ Version:``` *'+Config.VERSION+'*\n```▣ Branch:``` *'+Config.BRANCH+'*\n```▣ Hubungi Pemilik:``` *wa.me/'+Config.OWNERNUM+'*\n```▣ Bahasa:``` *'+language+'*\n```▣ Bio otomatis:``` *'+auto_bio+'*\n```▣ Anti Tautan:``` *'+anti_link+'*\n```▣ Jenis Pekerjaan:``` *'+Config.WORKTYPE+'*\n\n∎ ⇓ *Perintah* ⇓ ∎\n\n'
 
     newCommand(
-             {cmd: 'list ?(.*)',
+             {pattern: 'list ?(.*)',
               fromMe: td,
-              dontAddCommandList: true},
+              hideFromCommandList: true},
               (async (message, match) => {
-       
+      
         var CMD_HELP = '';
         if (match[1] === '') {
             WhatsAlexa.commands.map(
                 async (command) =>  {
-                    if (command.dontAddCommandList || command.cmd === undefined) return;
+                    if (command.hideFromCommandList || command.pattern === undefined) return;
                     try {
-                        var match = command.cmd.toString().match(/(\W*)([A-Za-zğüşiöç1234567890]*)/);
+                        var match = command.pattern.toString().match(/(\W*)([A-Za-zğüşiöç1234567890]*)/);
                     } catch {
-                        var match = [command.cmd];
+                        var match = [command.pattern];
                     }
     
                     var HANDLER = '';
@@ -61,11 +61,11 @@ if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala aki
             var CMD_HELP = '';
             WhatsAlexa.commands.map(
                 async (command) =>  {
-                    if (command.dontAddCommandList || command.cmd === undefined) return;
+                    if (command.hideFromCommandList || command.pattern === undefined) return;
                     try {
                         var cmatch = command.pattern.toString().match(/(\W*)([A-Za-zğüşiöç1234567890]*)/);
                     } catch {
-                        var cmatch = [command.cmd];
+                        var cmatch = [command.pattern];
                     }
                 
                     if (cmatch[2] == match[1]) {
@@ -91,20 +91,20 @@ if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala aki
     }));
 
     newCommand(
-             {cmd: 'menu ?(.*)',
+             {pattern: 'help ?(.*)',
               fromMe: td,
-              dontAddCommandList: true},
+              hideFromCommandList: true},
               (async (message, match) => {
 
         var CMD_HELP = '';
         if (match[1] === '') {
             WhatsAlexa.commands.map(
                 async (command) =>  {
-                    if (command.dontAddCommandList || command.cmd === undefined) return;
+                    if (command.hideFromCommandList || command.pattern === undefined) return;
                     try {
-                        var match = command.cmd.toString().match(/(\W*)([A-Za-zğüşiöç1234567890]*)/);
+                        var match = command.pattern.toString().match(/(\W*)([A-Za-zğüşiöç1234567890]*)/);
                     } catch {
-                        var match = [command.cmd];
+                        var match = [command.pattern];
                     }
     
                     var HANDLER = '';
@@ -129,11 +129,11 @@ if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala aki
             var CMD_HELP = '';
             WhatsAlexa.commands.map(
                 async (command) =>  {
-                    if (command.dontAddCommandList || command.cmd === undefined) return;
+                    if (command.hideFromCommandList || command.pattern === undefined) return;
                     try {
                         var cmatch = command.pattern.toString().match(/(\W*)([A-Za-zğüşiöç1234567890]*)/);
                     } catch {
-                        var cmatch = [command.cmd];
+                        var cmatch = [command.pattern];
                     }
                 
                     if (cmatch[2] == match[1]) {
@@ -159,20 +159,20 @@ if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala aki
     }));
 
     newCommand(
-             {cmd: 'help ?(.*)',
+             {pattern: 'cmd ?(.*)',
               fromMe: td,
-              dontAddCommandList: true},
+              hideFromCommandList: true},
               (async (message, match) => {
 
         var CMD_HELP = '';
         if (match[1] === '') {
             WhatsAlexa.commands.map(
                 async (command) =>  {
-                    if (command.dontAddCommandList || command.cmd === undefined) return;
+                    if (command.hideFromCommandList || command.pattern === undefined) return;
                     try {
-                        var match = command.cmd.toString().match(/(\W*)([A-Za-zğüşiöç1234567890]*)/);
+                        var match = command.pattern.toString().match(/(\W*)([A-Za-zğüşiöç1234567890]*)/);
                     } catch {
-                        var match = [command.cmd];
+                        var match = [command.pattern];
                     }
     
                     var HANDLER = '';
@@ -197,79 +197,11 @@ if (Config.LANG == 'ID') warning = 'Kami tidak bertanggung jawab atas segala aki
             var CMD_HELP = '';
             WhatsAlexa.commands.map(
                 async (command) =>  {
-                    if (command.dontAddCommandList || command.cmd === undefined) return;
+                    if (command.hideFromCommandList || command.pattern === undefined) return;
                     try {
                         var cmatch = command.pattern.toString().match(/(\W*)([A-Za-zğüşiöç1234567890]*)/);
                     } catch {
-                        var cmatch = [command.cmd];
-                    }
-                
-                    if (cmatch[2] == match[1]) {
-                        var HANDLER = '';
-    
-                        if (/\[(\W*)\]/.test(Config.HANDLERS)) {
-                            HANDLER = Config.HANDLERS.match(/\[(\W*)\]/)[1][0];
-                        } else {
-                            HANDLER = '.';
-                        }
-                        CMD_HELP += '*🎯 ' + Lang.COMMAND + ':* ```' + (cmatch.length >= 3 ? (HANDLER + cmatch[2]) : command.pattern) + (command.desc === '' ? '```\n\n' : '```\n');
-                        if (command.desc !== '') CMD_HELP += '*📝 ' + Lang.DESC + ':* ```' + command.desc + (command.warn === '' ? '```\n\n' : '```\n');
-                        if (command.usage !== '') CMD_HELP += '*⌨️ ' + Lang.EXAMPLE + ':* ```' + command.usage + '```\n\n';
-                        if (command.warn !== '') CMD_HELP += '*⚠️ ' + Lang.WARN + ':* ```' + command.warn + '```\n\n';
-
-                    }
-                }
-            );
-            if (CMD_HELP === '') CMD_HELP += Lang.NOT_FOUND;            
-            await message.client.sendMessage(
-                message.jid, MSG + CMD_HELP + FMSG, MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data});
-        }
-    }));
-
-    newCommand(
-             {cmd: 'cmd ?(.*)',
-              fromMe: td,
-              dontAddCommandList: true},
-              (async (message, match) => {
-
-        var CMD_HELP = '';
-        if (match[1] === '') {
-            WhatsAlexa.commands.map(
-                async (command) =>  {
-                    if (command.dontAddCommandList || command.cmd === undefined) return;
-                    try {
-                        var match = command.cmd.toString().match(/(\W*)([A-Za-zğüşiöç1234567890]*)/);
-                    } catch {
-                        var match = [command.cmd];
-                    }
-    
-                    var HANDLER = '';
-    
-                    if (/\[(\W*)\]/.test(Config.HANDLERS)) {
-                        HANDLER = Config.HANDLERS.match(/\[(\W*)\]/)[1][0];
-                    } else {
-                        HANDLER = '.';
-                    }
-                    CMD_HELP += '*🎯 ' + Lang.COMMAND + ':* ```' + (match.length >= 3 ? (HANDLER + match[2]) : command.pattern) + (command.desc === '' ? '```\n\n' : '```\n');
-                    if (command.desc !== '') CMD_HELP += '*📝 ' + Lang.DESC + ':* ```' + command.desc + (command.warn === '' ? '```\n\n' : '```\n');
-                    if (command.usage !== '') CMD_HELP += '*⌨️ ' + Lang.EXAMPLE + ':* ```' + command.usage + '```\n\n';
-                    if (command.warn !== '') CMD_HELP += '*⚠️ ' + Lang.WARN + ':* ```' + command.warn + '```\n\n';
-
-                }
-            );
-            
-          await message.client.sendMessage(
-                message.jid, MSG + CMD_HELP + FMSG, MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data});
-        } else {
-
-            var CMD_HELP = '';
-            WhatsAlexa.commands.map(
-                async (command) =>  {
-                    if (command.dontAddCommandList || command.cmd === undefined) return;
-                    try {
-                        var cmatch = command.pattern.toString().match(/(\W*)([A-Za-zğüşiöç1234567890]*)/);
-                    } catch {
-                        var cmatch = [command.cmd];
+                        var cmatch = [command.pattern];
                     }
                 
                     if (cmatch[2] == match[1]) {
