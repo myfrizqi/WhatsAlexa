@@ -6,7 +6,7 @@ let Language = require('../language');
 let Lang = Language.getString('clear');
 
 newCommand(
-         {cmd: 'clear',
+         {pattern: 'clear',
           fromMe: true,
           desc: Lang.CLR_DESC},
           (async (message, match) => {
