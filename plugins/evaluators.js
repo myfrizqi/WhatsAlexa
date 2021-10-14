@@ -9,7 +9,7 @@ let Language = require('../language');
 let Lang = Language.getString('evaluators');
 
 newCommand(
-         {cmd: 'termux ?(.*)',
+         {pattern: 'termux ?(.*)',
           fromMe: true,
           desc: Lang.TERM_DESC},
           (async (message, match) => {  
@@ -38,7 +38,7 @@ if (Config.LANG == 'ML') ldc = '*⭕ ലിങ്ക് കണ്ടെത്ത
 if (Config.LANG == 'ID') ldc = '*⭕ tautan terdeteksi! ⭕*'
 
 newCommand(
-         {msg: 'text',
+         {on: 'text',
           fromMe: false,
           deleteCommand: false},
           (async (message, match) => {
@@ -74,7 +74,7 @@ newCommand(
 }));
 
 newCommand(
-         {cmd: 'pmsend ?(.*)',
+         {pattern: 'pmsend ?(.*)',
           fromMe: true,
           desc: Lang.PMS_DESC},
           (async (message, match) => {
