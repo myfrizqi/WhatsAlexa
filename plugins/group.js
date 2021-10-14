@@ -23,9 +23,9 @@ async function checkImAdmin(message, user = message.client.user.jid) {
 }
 
 newCommand(
-         {cmd: 'kick ?(.*)',
+         {pattern: 'kick ?(.*)',
           fromMe: true,
-          onlyGroup: true,
+          Group: true,
           desc: Lang.BAN_DESC},
           (async (message, match) => { 
 
@@ -67,9 +67,9 @@ newCommand(
 }));
 
 newCommand(
-         {cmd: 'add(?: |$)(.*)',
+         {pattern: 'add(?: |$)(.*)',
           fromMe: true,
-          onlyGroup: true,
+          Group: true,
           desc: Lang.ADD_DESC},
           (async (message, match) => { 
 
@@ -87,9 +87,9 @@ newCommand(
 }));
 
 newCommand(
-         {cmd: 'promote ?(.*)',
+         {pattern: 'promote ?(.*)',
           fromMe: true,
-          onlyGroup: true,
+          Group: true,
           desc: Lang.PROMOTE_DESC},
           (async (message, match) => {
     
@@ -151,9 +151,9 @@ newCommand(
 }));
 
 newCommand(
-         {cmd: 'demote ?(.*)',
+         {pattern: 'demote ?(.*)',
           fromMe: true,
-          onlyGroup: true,
+          Group: true,
           desc: Lang.DEMOTE_DESC},
           (async (message, match) => { 
   
@@ -215,9 +215,9 @@ newCommand(
 }));
 
 newCommand(
-         {cmd: 'closegc ?(.*)',
+         {pattern: 'closegc ?(.*)',
           fromMe: true,
-          onlyGroup: true,
+          Group: true,
           desc: Lang.MUTE_DESC},
           (async (message, match) => {  
  
@@ -235,9 +235,9 @@ newCommand(
 }));
 
 newCommand(
-         {cmd: 'opengc ?(.*)',
+         {pattern: 'opengc ?(.*)',
           fromMe: true,
-          onlyGroup: true,
+          Group: true,
           desc: Lang.UNMUTE_DESC},
           (async (message, match) => {
     
@@ -255,9 +255,9 @@ newCommand(
 }));
 
 newCommand(
-         {cmd: 'linkgc ?(.*)',
+         {pattern: 'linkgc ?(.*)',
           fromMe: true,
-          onlyGroup: true,
+          Group: true,
           desc: Lang.INVITE_DESC},
           (async (message, match) => { 
   
@@ -269,8 +269,8 @@ newCommand(
 }));
 
 newCommand(
-         {cmd: 'setname ?(.*)',
-          onlyGroup: true,
+         {pattern: 'setname ?(.*)',
+          Group: true,
           fromMe: true,
           desc: Lang.SET_NAME_DESC},
           (async (message, match) => {
