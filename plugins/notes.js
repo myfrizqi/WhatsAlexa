@@ -86,7 +86,8 @@ newCommand(
         await message.sendMessage(message.jid, Lang.UNSUCCESSFUL, MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data})
 
         return
-    )
+     )
+   })
  })
 
 newCommand(
@@ -105,4 +106,5 @@ newCommand(
 
     return await message.sendMessage(message.jid, Lang.SUCCESSFULLY_DELETED, MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data})
    )
+  })
  })
