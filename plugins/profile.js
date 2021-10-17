@@ -1,17 +1,27 @@
-let WhatsAlexa = require('../events');
+let { newCommand } = require('../events');
 let {MessageType} = require('@adiwajshing/baileys');
 let Config = require('../config');
 let fs = require('fs');
 let Language = require('../language');
 let Lang = Language.getString('profile');
 
-WhatsAlexa.addCommand({pattern: 'leave', fromMe: true, desc: Lang.KICKME_DESC, onlyGroup: true}, (async (message, match) => {
+newCommand(
+         {pattern: 'leave',
+          fromMe: true,
+          desc: Lang.KICKME_DESC,
+          onlyGroup: true},
+          (async (message, match) => {
 
         await message.client.sendMessage(message.jid,Lang.KICKME,MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data});
         await message.client.groupLeave(message.jid);
 }));
 
-WhatsAlexa.addCommand({pattern: 'pp', fromMe: true, desc: Lang.PP_DESC}, (async (message, match) => {    
+newCommand(
+         {pattern: 'pp',
+          fromMe: true,
+          desc: Lang.PP_DESC},
+          (async (message, match) => {
+   
     if (message.reply_message === false || message.reply_message.image === false) return await message.client.sendMessage(message.jid,Lang.NEED_PHOTO, MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data});
     
     var load = await message.client.sendMessage(message.jid,Lang.PPING,MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data});
@@ -27,7 +37,12 @@ WhatsAlexa.addCommand({pattern: 'pp', fromMe: true, desc: Lang.PP_DESC}, (async 
     await load.delete();
 }));
 
-WhatsAlexa.addCommand({pattern: 'block ?(.*)', fromMe: true, desc: Lang.BLOCK_DESC}, (async (message, match) => {    
+newCommand(
+         {pattern: 'block ?(.*)',
+          fromMe: true,
+          desc: Lang.BLOCK_DESC},
+          (async (message, match) => { 
+  
     if (message.reply_message !== false) {
         await message.client.sendMessage(message.jid, '@' + message.reply_message.jid.split('@')[0] + '```, ' + Lang.BLOCKED + '!```', MessageType.text, {
             quotedMessage: message.reply_message.data, contextInfo: {mentionedJid: [message.reply_message.jid.replace('c.us', 's.whatsapp.net')]}
@@ -48,7 +63,12 @@ WhatsAlexa.addCommand({pattern: 'block ?(.*)', fromMe: true, desc: Lang.BLOCK_DE
     }
 }));
 
-WhatsAlexa.addCommand({pattern: 'unblock ?(.*)', fromMe: true, desc: Lang.UNBLOCK_DESC}, (async (message, match) => {    
+newCommand(
+         {pattern: 'unblock ?(.*)',
+          fromMe: true,
+          desc: Lang.UNBLOCK_DESC},
+          (async (message, match) => {
+   
     if (message.reply_message !== false) {
         await message.client.blockUser(message.reply_message.jid, "remove");
         await message.client.sendMessage(message.jid, '@' + message.reply_message.jid.split('@')[0] + '```, ' + Lang.UNBLOCKED + '!```', MessageType.text, {
@@ -71,7 +91,12 @@ WhatsAlexa.addCommand({pattern: 'unblock ?(.*)', fromMe: true, desc: Lang.UNBLOC
 
 if (Config.WORKTYPE == 'private') {
 
-    WhatsAlexa.addCommand({pattern: 'jid ?(.*)', fromMe: true, desc: Lang.JID_DESC}, (async (message, match) => {    
+    newCommand(
+               {pattern: 'jid ?(.*)',
+                fromMe: true,
+                desc: Lang.JID_DESC},
+                (async (message, match) => { 
+  
         if (message.reply_message !== false) {
             await message.client.sendMessage(message.jid, Lang.JID.format(message.reply_message.jid.split('@')[0], message.reply_message.jid), MessageType.text, {
                 quotedMessage: message.reply_message.data, contextInfo: {mentionedJid: [message.reply_message.jid.replace('c.us', 's.whatsapp.net')]}
@@ -89,7 +114,12 @@ if (Config.WORKTYPE == 'private') {
 }
 else if (Config.WORKTYPE == 'public') {
 
-    WhatsAlexa.addCommand({pattern: 'jid ?(.*)', fromMe: false, desc: Lang.JID_DESC}, (async (message, match) => {    
+    newCommand(
+             {pattern: 'jid ?(.*)',
+              fromMe: false,
+              desc: Lang.JID_DESC},
+              (async (message, match) => { 
+  
         if (message.reply_message !== false) {
             await message.client.sendMessage(message.jid, Lang.JID.format(message.reply_message.jid.split('@')[0], message.reply_message.jid), MessageType.text, {
                 quotedMessage: message.reply_message.data, contextInfo: {mentionedJid: [message.reply_message.jid.replace('c.us', 's.whatsapp.net')]}
