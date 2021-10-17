@@ -1,4 +1,4 @@
-let WhatsAlexa = require('../events');
+let { newCommand } = require('../events');
 let Config = require('../config');
 let Heroku = require('heroku-client');
 let {secondsToHms} = require('./afk');
@@ -15,7 +15,11 @@ let heroku = new Heroku({
 
 let baseURI = '/apps/' + Config.HEROKU.APP_NAME;
 
-WhatsAlexa.addCommand({pattern: 'restart', fromMe: true, desc: Lang.RESTART_DESC}, (async (message, match) => {
+newCommand(
+         {pattern: 'restart',
+          fromMe: true,
+          desc: Lang.RESTART_DESC},
+          (async (message, match) => {
 
     await message.client.sendMessage(message.jid,Lang.RESTART_MSG, MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data})
     console.log(baseURI);
@@ -24,7 +28,11 @@ WhatsAlexa.addCommand({pattern: 'restart', fromMe: true, desc: Lang.RESTART_DESC
     });
 }));
 
-WhatsAlexa.addCommand({pattern: 'shutdown', fromMe: true, desc: Lang.SHUTDOWN_DESC}, (async(message, match) => {
+newCommand(
+         {pattern: 'shutdown',
+          fromMe: true,
+          desc: Lang.SHUTDOWN_DESC},
+          (async(message, match) => {
 
     await heroku.get(baseURI + '/formation').then(async (formation) => {
         forID = formation[0].id;
@@ -39,7 +47,11 @@ WhatsAlexa.addCommand({pattern: 'shutdown', fromMe: true, desc: Lang.SHUTDOWN_DE
     });
 }));
 
-WhatsAlexa.addCommand({pattern: 'editvar ?(.*)', fromMe: true, desc: Lang.SETVAR_DESC}, (async(message, match) => {
+newCommand(
+         {pattern: 'editvar ?(.*)',
+          fromMe: true,
+          desc: Lang.SETVAR_DESC},
+          (async(message, match) => {
 
     if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.KEY_VAL_MISSING, MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data})
 
@@ -56,7 +68,11 @@ WhatsAlexa.addCommand({pattern: 'editvar ?(.*)', fromMe: true, desc: Lang.SETVAR
     }
 }));
 
-WhatsAlexa.addCommand({pattern: 'removevar ?(.*)', fromMe: true, desc: Lang.DELVAR_DESC}, (async (message, match) => {
+newCommand(
+         {pattern: 'removevar ?(.*)',
+          fromMe: true,
+          desc: Lang.DELVAR_DESC},
+          (async (message, match) => {
 
     if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.KEY_VAL_MISSING, MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data})
     await heroku.get(baseURI + '/config-vars').then(async (vars) => {
@@ -78,7 +94,11 @@ WhatsAlexa.addCommand({pattern: 'removevar ?(.*)', fromMe: true, desc: Lang.DELV
 
 }));
 
-WhatsAlexa.addCommand({pattern: 'getvar ?(.*)', fromMe: true, desc: Lang.GETVAR_DESC}, (async (message, match) => {
+newCommand(
+         {pattern: 'getvar ?(.*)',
+          fromMe: true,
+          desc: Lang.GETVAR_DESC},
+          (async (message, match) => {
 
     if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.KEY_VAL_MISSING, MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data})
     await heroku.get(baseURI + '/config-vars').then(async (vars) => {
@@ -93,7 +113,11 @@ WhatsAlexa.addCommand({pattern: 'getvar ?(.*)', fromMe: true, desc: Lang.GETVAR_
 
 if (Config.WORKTYPE == 'private') {
 
-    WhatsAlexa.addCommand({pattern: 'dyno', fromMe: true, desc: Lang.DYNO_DESC}, (async (message, match) => {
+    newCommand(
+             {pattern: 'dyno',
+              fromMe: true,
+              desc: Lang.DYNO_DESC},
+              (async (message, match) => {
 
         heroku.get('/account').then(async (account) => {
             // have encountered some issues while calling this API via heroku-client
@@ -126,7 +150,11 @@ if (Config.WORKTYPE == 'private') {
 }
 else if (Config.WORKTYPE == 'public') {
 
-    WhatsAlexa.addCommand({pattern: 'dyno', fromMe: false, desc: Lang.DYNO_DESC}, (async (message, match) => {
+    newCommand(
+             {pattern: 'dyno',
+              fromMe: false,
+              desc: Lang.DYNO_DESC},
+              (async (message, match) => {
 
         heroku.get('/account').then(async (account) => {
             // have encountered some issues while calling this API via heroku-client
