@@ -1,4 +1,4 @@
-let WhatsAlexa = require('../events');
+let { newCommand } = require('../events');
 let Heroku = require('heroku-client');
 let Config = require('../config');
 let {MessageType} = require('@adiwajshing/baileys');
@@ -16,7 +16,12 @@ const heroku = new Heroku({
 
 let baseURI = '/apps/' + Config.HEROKU.APP_NAME;
 
-WhatsAlexa.addCommand({pattern: 'insert ?(.*)', fromMe: true, desc: Lang.INSTALL_DESC}, (async (message, match) => {
+newCommand(
+         {pattern: 'insert ?(.*)',
+          fromMe: true,
+          desc: Lang.INSTALL_DESC},
+          (async (message, match) => {
+
     if (match[1] === '') return await message.client.sendMessage(message.jid, Lang.NEED_URL, MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data});
     try {
         var url = new URL(match[1]);
@@ -51,10 +56,16 @@ WhatsAlexa.addCommand({pattern: 'insert ?(.*)', fromMe: true, desc: Lang.INSTALL
 
         await Db.installPlugin(url, plugin_name);
         await message.client.sendMessage(message.jid, Lang.INSTALLED, MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data});
-    }
-}));
+     }
+   )
+});
 
-WhatsAlexa.addCommand({pattern: 'plugin', fromMe: true, desc: Lang.PLUGIN_DESC }, (async (message, match) => {
+newCommand(
+         {pattern: 'plugin',
+          fromMe: true,
+          desc: Lang.PLUGIN_DESC },
+          (async (message, match) => {
+
     var mesaj = Lang.INSTALLED_FROM_REMOTE;
     var plugins = await Db.PluginDB.findAll();
     if (plugins.length < 1) {
@@ -66,10 +77,17 @@ WhatsAlexa.addCommand({pattern: 'plugin', fromMe: true, desc: Lang.PLUGIN_DESC }
             }
         );
         return await message.client.sendMessage(message.jid, mesaj, MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data});
-    }
-}));
+     }
+   )
+  }
+);
 
-WhatsAlexa.addCommand({pattern: 'remove(?: |$)(.*)', fromMe: true, desc: Lang.REMOVE_DESC}, (async (message, match) => {
+newCommand(
+         {pattern: 'remove(?: |$)(.*)',
+          fromMe: true,
+          desc: Lang.REMOVE_DESC},
+          (async (message, match) => {
+
     if (match[1] === '') return await message.client.sendMessage(message.jid, Lang.NEED_PLUGIN, MessageType.text, {contextInfo: { forwardingScore: 49, isForwarded: true }, quoted: message.data});
     if (!match[1].startsWith('__')) match[1] = '__' + match[1];
     var plugin = await Db.PluginDB.findAll({ where: {name: match[1]} });
@@ -91,5 +109,5 @@ WhatsAlexa.addCommand({pattern: 'remove(?: |$)(.*)', fromMe: true, desc: Lang.RE
 
         });
     }
-
-}));
+   )
+});
